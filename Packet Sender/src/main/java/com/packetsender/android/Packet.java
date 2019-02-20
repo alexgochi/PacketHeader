@@ -74,8 +74,8 @@ public class Packet implements Comparable<Packet> {
         this.name = "";
         this.tcpOrUdp = "TCP";
         this.timestamp = now();
-        this.fromIP = "192.168.1.23";
-        this.toIP = "192.168.1.23";
+        this.fromIP = "172.16.112.67";
+        this.toIP = "172.16.112.67";
         this.fromPort = 50055;
         this.port = 50055;
         this.data = new byte[10];

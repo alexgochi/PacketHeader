@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:2.3.2'
     }
 }
 apply plugin: 'android'
@@ -12,13 +12,13 @@ repositories {
     mavenCentral()
 }
 allprojects {
-    tasks.withType(Compile) {
-        options.compilerArgs << "-Xlint:deprecation"
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
     }
 }
 android {
-    compileSdkVersion 19
-    buildToolsVersion "17.0.0"
+    compileSdkVersion 27
+    buildToolsVersion '25.0.3'
 
     signingConfigs {
         release {
@@ -29,14 +29,13 @@ android {
         }
     }
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 19
+        minSdkVersion 19
+        targetSdkVersion 27
     }
     buildTypes {
         release {
-            runProguard true
-            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
-            signingConfig signingConfigs.release
+            minifyEnabled  false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
     productFlavors {
@@ -47,5 +46,7 @@ android {
 }
 
 dependencies {
-	compile 'com.android.support:support-v13:+'
+    compile  'com.android.support:appcompat-v7:27.1.1'
+    compile group: 'com.android.support', name: 'support-v13', version: '27.1.1'
+    compile group: 'com.android.support', name: 'support-v4', version: '27.1.1'
 }
